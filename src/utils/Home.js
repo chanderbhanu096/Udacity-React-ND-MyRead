@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import Shelf from '././Shelf'
+import Shelf from '././Shelf';
+import {get,getAll,update} from '../BooksAPI'
 
 class Home extends Component{
+  async componentDidMount(){
+    try {
+      const books = await getAll();
+      console.log(books);
+    }catch(error){
+      console.log(error)
+
+    }
+  }
     render(){
         return (<div className="list-books">
         <div className="list-books-title">
