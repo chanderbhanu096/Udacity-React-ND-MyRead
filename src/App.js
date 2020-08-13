@@ -5,11 +5,14 @@ import { Switch, Route } from "react-router-dom";
 // import Shelf from './utils/Shelf';
 import Search from "./utils/Search";
 import Home from "./utils/Home";
+import MyContext from "./utils/Model"
+import Model from "./utils/Model"
+// import Provider from "./utils/Provider"
 
 class BooksApp extends React.Component {
   // state = {
   //   books: [],
-  //   searched: [],
+  //   searched: s[],
   //   query: "",
   //   /**
   //    * TODO: Instead of using this state variable to keep track of which page
@@ -40,14 +43,23 @@ class BooksApp extends React.Component {
   // };
 
   render() {
-    const books = this.state;
     return (
       <div className="app">
         {/* {this.state.showSearchPage ? ( */}
+        <Model>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path={"/"}
+            render={() => (
+              <MyContext.Consumer>
+                {(context) => <Home {...context} />}
+              </MyContext.Consumer>
+            )}
+          />
           <Route exact path="/Search" component={Search} />
         </Switch>
+        </Model>
         <Search />
       </div>
     );

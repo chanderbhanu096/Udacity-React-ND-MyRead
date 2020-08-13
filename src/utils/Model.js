@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 
-export const MyContext = React.createElement{
+export const MyContext = React.createContext();
+
+class Model extends Component{
     constructor(){
         super();
         this.state = {
             books: [],
             currentlyReading: [],
             wanttoread:[],
-            read: [],
+            read: []
         }
     }
 
     render(){
-        return(
-            <MyContext.Provider value={this.props.state}>
+        return (
+            <MyContext.Provider value={{...this.state}}>
             {this.props.children}
-            </MyContext.Provider>            )
+            </MyContext.Provider>
+        )
     }
-}  
+}
+export default Model;
